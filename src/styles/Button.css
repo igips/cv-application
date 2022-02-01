@@ -1,0 +1,36 @@
+button {
+    width: 70px;
+    border: none;
+    height: 30px;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delButton {
+    background-color: red;
+    
+}
+
+.addButton {
+    background-color: green;
+}
+
+
+.delButton:hover {
+    background-color: #CC0000;
+}
+
+.addButton:hover {
+    background-color: #004D00;
+}
+
+@media (max-width: 480px) {
+	
+    button {
+        width: 100%;
+    }
+
+    
+}
