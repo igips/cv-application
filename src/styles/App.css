@@ -1,0 +1,45 @@
+* {
+    margin: 0px;
+}
+
+html {
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+
+body {
+    min-height: 100%;
+    display: flex;
+}
+
+#root {
+    height: inherit;
+    flex: 1;
+    display: flex;
+}
+
+
+.app {
+    height: inherit;
+    background-color: #d9d9d9;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+header {
+    font-size: 3.5em;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Lato', sans-serif;
+}
+
+
