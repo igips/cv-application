@@ -1,35 +1,33 @@
 .form {
-    background-color: #F3F3F3;
-    width: 65%;
-    box-shadow: 1px 1px #C0C0C0, -2.5px 0 .3em #8D8D8D;
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Lato', sans-serif;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-bottom: 10px;
-    border-radius: 1em;
+	background-color: #f3f3f3;
+	width: 65%;
+	box-shadow: 1px 1px #c0c0c0, -2.5px 0 0.3em #8d8d8d;
+	font-family: "Bebas Neue", cursive;
+	font-family: "Lato", sans-serif;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	margin-bottom: 10px;
+	border-radius: 1em;
 }
 
 p {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  width: max-content;
-  border-bottom: 1px solid black;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 15px;
+	width: max-content;
+	border-bottom: 1px solid black;
 }
 
-
-
 @media (max-width: 1200px) {
-    .form {
-        width: 80%;
-    }
+	.form {
+		width: 80%;
+	}
 }
 
 @media (max-width: 900px) {
-    .form {
-        width: 90%;
-    }
+	.form {
+		width: 90%;
+	}
 }

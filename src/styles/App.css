@@ -1,5 +1,5 @@
 * {
-    margin: 0px;
+	margin: 0px;
 }
 
 html {
@@ -14,60 +14,51 @@ html {
 	box-sizing: inherit;
 }
 
-
 body {
-    min-height: 100%;
-    display: flex;
+	min-height: 100%;
+	display: flex;
 }
 
 #root {
-    height: inherit;
-    flex: 1;
-    display: flex;
+	height: inherit;
+	flex: 1;
+	display: flex;
 }
 
-
 .app {
-    height: inherit;
-    background-color: #d9d9d9;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    
+	height: inherit;
+	background-color: #d9d9d9;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 10px;
+	padding-bottom: 5px;
 }
 
 header {
-    font-size: 3.5em;
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Lato', sans-serif;
-    border-bottom: 3px solid #FFDE8D;
-    margin-bottom: 30px;
+	font-size: 3.5em;
+	font-family: "Bebas Neue", cursive;
+	font-family: "Lato", sans-serif;
+	border-bottom: 3px solid #ffde8d;
+	margin-bottom: 30px;
 }
 
 footer {
-    font-size: 25px;
-    
+	font-size: 25px;
 }
 
 a {
-    color: black;
+	color: black;
 }
 
 a:hover {
-    color: #4D4D4D;
+	color: #4d4d4d;
 }
-
-
 
 @media (max-width: 280px) {
-    header {
-        margin-bottom: 15px;
-        font-size: 2.5em;
-    }
-
+	header {
+		margin-bottom: 15px;
+		font-size: 2.5em;
+	}
 }
-
-
