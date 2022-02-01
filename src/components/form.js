@@ -13,12 +13,7 @@ class Form extends React.Component {
         <div className="form">
           <p>Personal Information</p>
           
-  
-    
         </div>
-  
-  
-  
   
       );
     }

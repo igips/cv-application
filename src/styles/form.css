@@ -1,6 +1,4 @@
 .form {
-    width: 50px;
-    height: 50px;
     background-color: #F3F3F3;
     width: 65%;
     box-shadow: 1px 1px #C0C0C0, -2.5px 0 .3em #8D8D8D;
@@ -10,7 +8,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     border-radius: 1em;
 }
 
