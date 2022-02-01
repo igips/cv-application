@@ -1,4 +1,5 @@
 import React from "react";
+import Form from "./components/Form";
 import "./styles/App.css";
 
 
@@ -13,8 +14,10 @@ class App extends React.Component {
     return (
       <div className="app">
         <header>CV Builder</header>
-
+        <main><Form></Form></main>
         
+
+
 
       </div>
 
