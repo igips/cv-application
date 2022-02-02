@@ -17,6 +17,19 @@ button {
     background-color: green;
 }
 
+.previewButton {
+    background-color:lightgreen;
+    /* width: 100%; */
+    margin-top: 15px;
+    
+}
+
+.resetButton {
+    background-color:orange;
+    /* width: 100%; */
+    margin-top: 15px;
+}
+
 
 .delButton:hover {
     background-color: #CC0000;
@@ -24,6 +37,14 @@ button {
 
 .addButton:hover {
     background-color: #004D00;
+}
+
+.resetButton:hover {
+    background-color: #CC7200;
+}
+
+.previewButton:hover {
+    background-color: #5DBB5D;
 }
 
 @media (max-width: 480px) {

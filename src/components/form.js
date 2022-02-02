@@ -2,8 +2,8 @@ import React from "react";
 import "../styles/Form.css";
 import PersonalInfo from "./PersonalInfo";
 import Experience from "./Experience";
-import Button from "./Button"
-import Input from "./Input"
+import Education from "./Education";
+import Button from "./Button";
 
 class Form extends React.Component {
 	constructor(props) {
@@ -17,7 +17,12 @@ class Form extends React.Component {
 				<PersonalInfo></PersonalInfo>
 				<p className="notFirstPara">Experience</p>
 				<Experience></Experience>
-				<p>Education</p>
+				<p className="notFirstPara">Education</p>
+				<Education></Education>
+				<div className="buttonDiv">
+					<Button type="preview"></Button>
+					<Button type="reset"></Button>
+				</div>
 				
 			</main>
 		);

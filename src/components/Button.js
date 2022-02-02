@@ -7,8 +7,15 @@ class Button extends React.Component {
 
 		if (this.props.type === "delete") {
 			button = <button className="delButton">Delete</button>;
+			
 		} else if (this.props.type === "add") {
 			button = <button className="addButton">Add</button>;
+
+		} else if (this.props.type === "preview") {
+			button = <button className="previewButton">Preview</button>;
+
+		} else if (this.props.type === "reset") {
+			button = <button className="resetButton">Reset</button>;
 		}
 
 		return (

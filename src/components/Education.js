@@ -2,7 +2,7 @@ import React from "react";
 import Input from "./Input";
 import AddDeleButtons from "./AddDeleButtons";
 
-class Experience extends React.Component {
+class Education extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -10,16 +10,16 @@ class Experience extends React.Component {
 	render() {
 		return (
 			<div className="formLine">
-				<Input for="Position"></Input>
-				<Input for="Company"></Input>
+				<Input for="University/School"></Input>
+				<Input for="City"></Input>
+				<Input for="Field of study"></Input>
+				<Input for="Degree"></Input>
 				<Input for="From"></Input>
 				<Input for="To"></Input>
-				<Input for="City"></Input>
-				<Input for="Job Description"></Input>
-                <AddDeleButtons></AddDeleButtons>
+				<AddDeleButtons></AddDeleButtons>
 			</div>
 		);
 	}
 }
 
-export default Experience;
+export default Education;
