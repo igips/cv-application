@@ -9,8 +9,8 @@ class PrevRes extends React.Component {
 	render() {
 		return (
 			<div className="buttonDiv">
-				<Button type="preview"></Button>
-				<Button type="reset"></Button>
+				<Button  type="preview"></Button>
+				<Button res={this.props.res} type="reset"></Button>
 			</div>
 		);
 	}

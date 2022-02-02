@@ -32,7 +32,28 @@ class Form extends React.Component {
 		this.handleAddEducation = this.handleAddEducation.bind(this);
 		this.handleChangeEducation = this.handleChangeEducation.bind(this);
 		this.handleDeleteEducation = this.handleDeleteEducation.bind(this);
+		this.handleReset = this.handleReset.bind(this);
 	}
+
+	handleReset() {
+	
+		this.setState({
+			personalInfo: {
+				fullName: "",
+				title: "",
+				photo: emptyAvatar,
+				address: "",
+				number: "",
+				email: "",
+				about: "",
+			},
+			
+		}, () => console.log(this.state));
+
+		
+	}
+
+	
 
 	handleChange(e) {
 		if (e.target.type === "file") {
@@ -165,7 +186,7 @@ class Form extends React.Component {
 					change={this.handleChangeEducation}
 					del={this.handleDeleteEducation}
 				></Education>
-				<PrevRes></PrevRes>
+				<PrevRes res={this.handleReset}></PrevRes>
 			</main>
 		);
 	}

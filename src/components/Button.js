@@ -22,9 +22,9 @@ class Button extends React.Component {
 				</div>
 			);
 		} else if (this.props.type === "preview") {
-			button = <button className="previewButton">Preview</button>;
+			button = <button  className="previewButton">Preview</button>;
 		} else if (this.props.type === "reset") {
-			button = <button className="resetButton">Reset</button>;
+			button = <button onClick={this.props.res} className="resetButton">Reset</button>;
 		}
 
 		return button;
