@@ -12,38 +12,69 @@ class Experience extends React.Component {
 		};
 
 		this.addForm = this.addForm.bind(this);
-        this.deleteForm = this.deleteForm.bind(this);
+		this.deleteForm = this.deleteForm.bind(this);
 	}
 
 	addForm() {
-        const uKey = uniqid();
+		const uKey = uniqid();
+
 		this.setState({
 			forms: [
 				...this.state.forms,
 				<React.Fragment key={uKey}>
-					<Input for="Position"></Input>
-					<Input for="Company"></Input>
-					<Input for="From"></Input>
-					<Input for="To"></Input>
-					<Input for="City"></Input>
-					<Input for="Job Description"></Input>
+					<Input
+						id={uKey}
+						val={this.props.val.position}
+						change={this.props.change}
+						name="position"
+						for="Position"
+					></Input>
+					<Input
+						id={uKey}
+						val={this.props.val.company}
+						change={this.props.change}
+						name="company"
+						for="Company"
+					></Input>
+					<Input
+						id={uKey}
+						val={this.props.val.from}
+						change={this.props.change}
+						name="from"
+						for="From"
+					></Input>
+					<Input id={uKey} val={this.props.val.to} change={this.props.change} name="to" for="To"></Input>
+					<Input
+						id={uKey}
+						val={this.props.val.city}
+						change={this.props.change}
+						name="city"
+						for="City"
+					></Input>
+					<Input
+						id={uKey}
+						val={this.props.val.description}
+						change={this.props.change}
+						name="description"
+						for="Job Description"
+					></Input>
 					<Button a="" click={() => this.deleteForm(uKey)} type="delete"></Button>
-                </React.Fragment>,
+				</React.Fragment>,
 			],
 		});
+		this.props.add(uKey);
 	}
 
-    deleteForm(key) {
-        this.setState(state => {
-            const forms = state.forms.filter(fragment => fragment.key !== key);
+	deleteForm(key) {
+		this.setState((state) => {
+			const forms = state.forms.filter((fragment) => fragment.key !== key);
 
-            return {
-                forms,
-            };
-        });
-    }
-
-
+			return {
+				forms,
+			};
+		});
+		this.props.del(key);
+	}
 
 	render() {
 		return (

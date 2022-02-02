@@ -6,23 +6,28 @@ class Button extends React.Component {
 		let button;
 
 		if (this.props.type === "delete") {
-			
-			button = <div className="buttonDiv"><button onClick={this.props.click} className="delButton">Delete</button></div>;
-
+			button = (
+				<div className="buttonDiv">
+					<button onClick={this.props.click} className="delButton">
+						Delete
+					</button>
+				</div>
+			);
 		} else if (this.props.type === "add") {
-			
-			button = <div className="buttonDiv"><button onClick={this.props.click} className="addButton">Add</button></div>;
-
+			button = (
+				<div className="buttonDiv">
+					<button onClick={this.props.click} className="addButton">
+						Add
+					</button>
+				</div>
+			);
 		} else if (this.props.type === "preview") {
 			button = <button className="previewButton">Preview</button>;
-
 		} else if (this.props.type === "reset") {
 			button = <button className="resetButton">Reset</button>;
 		}
 
-		return (
-			button
-		);
+		return button;
 	}
 }
 
