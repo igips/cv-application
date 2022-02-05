@@ -12,6 +12,8 @@ class Form extends React.Component {
 		super(props);
 
 		this.state = {
+			ExperienceForm: [],
+			EducationForm: [],
 			personalInfo: {
 				fullName: "",
 				title: "",
@@ -23,6 +25,7 @@ class Form extends React.Component {
 			},
 			experience: [],
 			education: [],
+			
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -33,6 +36,11 @@ class Form extends React.Component {
 		this.handleChangeEducation = this.handleChangeEducation.bind(this);
 		this.handleDeleteEducation = this.handleDeleteEducation.bind(this);
 		this.handleReset = this.handleReset.bind(this);
+		this.addStateFormExperience = this.addStateFormExperience.bind(this);
+		this.deleteFormExpereience = this.deleteFormExpereience.bind(this);
+		this.addStateFormEducation = this.addStateFormEducation.bind(this);
+		this.deleteFormEducation = this.deleteFormEducation.bind(this);
+		
 	}
 
 	handleReset() {
@@ -99,6 +107,7 @@ class Form extends React.Component {
 					to: "",
 					city: "",
 					description: "",
+					
 				},
 			],
 		});
@@ -117,6 +126,7 @@ class Form extends React.Component {
 					degree: "",
 					from: "",
 					to: "",
+		
 				},
 			],
 		});
@@ -131,7 +141,7 @@ class Form extends React.Component {
 				return item;
 			});
 			return { ...state, experience: [...newExp] };
-		});
+		}, () => console.log(this.state));
 	}
 
 	handleChangeEducation(e, key) {
@@ -143,7 +153,7 @@ class Form extends React.Component {
 				return item;
 			});
 			return { ...state, education: [...newEdu] };
-		});
+		}, () => console.log(this.state));
 	}
 
 	handleDeleteExperience(key) {
@@ -162,6 +172,46 @@ class Form extends React.Component {
 		});
 	}
 
+	addStateFormExperience(state, key) {
+		
+
+		this.setState({
+			...this.state,
+			ExperienceForm: [
+				...this.state.ExperienceForm,
+					state
+			],
+		}, () => this.handleAddExperience(key));
+	}
+
+	deleteFormExpereience(key) {
+		this.setState((state) => {
+			const forms = state.ExperienceForm.filter((fragment) => fragment.key !== key);
+
+			return { ...state, ExperienceForm: [...forms] };
+		}, () => this.handleDeleteExperience(key));	
+	}
+
+	addStateFormEducation(state, key) {
+		this.setState({
+			...this.state,
+			EducationForm: [
+				...this.state.EducationForm,
+				state
+			],
+		}, () => this.handleAddEducation(key));
+	}
+
+	deleteFormEducation(key) {
+		this.setState((state) => {
+			const forms = state.EducationForm.filter((fragment) => fragment.key !== key);
+			return {...state, EducationForm: [...forms]};
+		}, () => this.handleDeleteEducation(key));
+	}
+
+	
+	
+
 	render() {
 		return (
 			<main className="form">
@@ -172,19 +222,21 @@ class Form extends React.Component {
 				<p className="notFirstPara">Experience</p>
 
 				<Experience
+					forms={this.state.ExperienceForm}
+					addState={this.addStateFormExperience}	
 					change={this.handleChangeExperience}
-					add={this.handleAddExperience}
 					val={this.state.experience}
-					del={this.handleDeleteExperience}
+					del={this.deleteFormExpereience}
 				></Experience>
 
 				<p className="notFirstPara">Education</p>
 
 				<Education
-					add={this.handleAddEducation}
+					forms={this.state.EducationForm}
+					addState={this.addStateFormEducation}
 					val={this.state.education}
 					change={this.handleChangeEducation}
-					del={this.handleDeleteEducation}
+					del={this.deleteFormEducation}
 				></Education>
 				<PrevRes res={this.handleReset}></PrevRes>
 			</main>
