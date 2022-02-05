@@ -1,9 +1,11 @@
 /* eslint-disable no-restricted-globals */
 import React from "react";
 import "../styles/Form.css";
+import "../styles/Preview.css";
 import PersonalInfo from "./PersonalInfo";
 import Experience from "./Experience";
 import Education from "./Education";
+import Preview from "./Preview";
 import PrevRes from "./PrevRes";
 import emptyAvatar from "../img/emptyAvatar.png";
 
@@ -12,6 +14,7 @@ class Form extends React.Component {
 		super(props);
 
 		this.state = {
+			preview: true,
 			ExperienceForm: [],
 			EducationForm: [],
 			personalInfo: {
@@ -25,7 +28,6 @@ class Form extends React.Component {
 			},
 			experience: [],
 			education: [],
-			
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -40,12 +42,12 @@ class Form extends React.Component {
 		this.deleteFormExpereience = this.deleteFormExpereience.bind(this);
 		this.addStateFormEducation = this.addStateFormEducation.bind(this);
 		this.deleteFormEducation = this.deleteFormEducation.bind(this);
-		
 	}
 
 	handleReset() {
-	
 		this.setState({
+			ExperienceForm: [],
+			EducationForm: [],
 			personalInfo: {
 				fullName: "",
 				title: "",
@@ -55,13 +57,10 @@ class Form extends React.Component {
 				email: "",
 				about: "",
 			},
-			
-		}, () => console.log(this.state));
-
-		
+			experience: [],
+			education: [],
+		});
 	}
-
-	
 
 	handleChange(e) {
 		if (e.target.type === "file") {
@@ -107,7 +106,6 @@ class Form extends React.Component {
 					to: "",
 					city: "",
 					description: "",
-					
 				},
 			],
 		});
@@ -126,7 +124,6 @@ class Form extends React.Component {
 					degree: "",
 					from: "",
 					to: "",
-		
 				},
 			],
 		});
@@ -141,7 +138,7 @@ class Form extends React.Component {
 				return item;
 			});
 			return { ...state, experience: [...newExp] };
-		}, () => console.log(this.state));
+		});
 	}
 
 	handleChangeEducation(e, key) {
@@ -153,7 +150,7 @@ class Form extends React.Component {
 				return item;
 			});
 			return { ...state, education: [...newEdu] };
-		}, () => console.log(this.state));
+		});
 	}
 
 	handleDeleteExperience(key) {
@@ -173,74 +170,90 @@ class Form extends React.Component {
 	}
 
 	addStateFormExperience(state, key) {
-		
-
-		this.setState({
-			...this.state,
-			ExperienceForm: [
-				...this.state.ExperienceForm,
-					state
-			],
-		}, () => this.handleAddExperience(key));
+		this.setState(
+			{
+				...this.state,
+				ExperienceForm: [...this.state.ExperienceForm, state],
+			},
+			() => this.handleAddExperience(key)
+		);
 	}
 
 	deleteFormExpereience(key) {
-		this.setState((state) => {
-			const forms = state.ExperienceForm.filter((fragment) => fragment.key !== key);
+		this.setState(
+			(state) => {
+				const forms = state.ExperienceForm.filter((fragment) => fragment.key !== key);
 
-			return { ...state, ExperienceForm: [...forms] };
-		}, () => this.handleDeleteExperience(key));	
+				return { ...state, ExperienceForm: [...forms] };
+			},
+			() => this.handleDeleteExperience(key)
+		);
 	}
 
 	addStateFormEducation(state, key) {
-		this.setState({
-			...this.state,
-			EducationForm: [
-				...this.state.EducationForm,
-				state
-			],
-		}, () => this.handleAddEducation(key));
+		this.setState(
+			{
+				...this.state,
+				EducationForm: [...this.state.EducationForm, state],
+			},
+			() => this.handleAddEducation(key)
+		);
 	}
 
 	deleteFormEducation(key) {
-		this.setState((state) => {
-			const forms = state.EducationForm.filter((fragment) => fragment.key !== key);
-			return {...state, EducationForm: [...forms]};
-		}, () => this.handleDeleteEducation(key));
+		this.setState(
+			(state) => {
+				const forms = state.EducationForm.filter((fragment) => fragment.key !== key);
+				return { ...state, EducationForm: [...forms] };
+			},
+			() => this.handleDeleteEducation(key)
+		);
 	}
 
-	
-	
-
 	render() {
-		return (
-			<main className="form">
-				<p>Personal Information</p>
+		if (this.state.preview) {
+			document.querySelector('meta[name="viewport"]').setAttribute("content", "width=793px");
 
-				<PersonalInfo change={this.handleChange} val={this.state.personalInfo}></PersonalInfo>
+			return (
+				<main className="preview">
+					<Preview></Preview>
+	
+				</main>
+			);
 
-				<p className="notFirstPara">Experience</p>
 
-				<Experience
-					forms={this.state.ExperienceForm}
-					addState={this.addStateFormExperience}	
-					change={this.handleChangeExperience}
-					val={this.state.experience}
-					del={this.deleteFormExpereience}
-				></Experience>
 
-				<p className="notFirstPara">Education</p>
+		} else {
+			document.querySelector('meta[name="viewport"]').setAttribute("content", "width=device-width, initial-scale=1");
+			return (
+				<main className="form">
+					<p>Personal Information</p>
 
-				<Education
-					forms={this.state.EducationForm}
-					addState={this.addStateFormEducation}
-					val={this.state.education}
-					change={this.handleChangeEducation}
-					del={this.deleteFormEducation}
-				></Education>
-				<PrevRes res={this.handleReset}></PrevRes>
-			</main>
-		);
+					<PersonalInfo change={this.handleChange} val={this.state.personalInfo}></PersonalInfo>
+
+					<p className="notFirstPara">Experience</p>
+
+					<Experience
+						forms={this.state.ExperienceForm}
+						addState={this.addStateFormExperience}
+						change={this.handleChangeExperience}
+						val={this.state.experience}
+						del={this.deleteFormExpereience}
+					></Experience>
+
+					<p className="notFirstPara">Education</p>
+
+					<Education
+						forms={this.state.EducationForm}
+						addState={this.addStateFormEducation}
+						val={this.state.education}
+						change={this.handleChangeEducation}
+						del={this.deleteFormEducation}
+					></Education>
+					<PrevRes res={this.handleReset}></PrevRes>
+				</main>
+			);
+		}
 	}
 }
 
