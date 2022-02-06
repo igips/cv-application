@@ -9,6 +9,7 @@ import Preview from "./Preview";
 import PrevRes from "./PrevRes";
 import emptyAvatar from "../img/emptyAvatar.png";
 import Button from "./Button";
+import ReactToPrint from 'react-to-print';
 
 class Form extends React.Component {
 	constructor(props) {
@@ -28,7 +29,7 @@ class Form extends React.Component {
 			experience: [],
 			education: [],
 		};
-
+		this.myRef = React.createRef();
 		this.handleChange = this.handleChange.bind(this);
 		this.handleAddExperience = this.handleAddExperience.bind(this);
 		this.handleChangeExperience = this.handleChangeExperience.bind(this);
@@ -58,12 +59,11 @@ class Form extends React.Component {
 	}
 
 	handlePreview() {
-		if(this.state.preview) {
+		if (this.state.preview) {
 			this.setState({
 				...this.state,
 				preview: false,
 			});
-
 		} else {
 			this.setState({
 				...this.state,
@@ -151,8 +151,6 @@ class Form extends React.Component {
 		});
 	}
 
-	
-
 	handleChangeEducation(e, key) {
 		this.setState((state) => {
 			const newEdu = state.education.map((item) => {
@@ -181,24 +179,32 @@ class Form extends React.Component {
 		});
 	}
 
-
-
 	render() {
-		
 		if (this.state.preview) {
 			document.querySelector('meta[name="viewport"]').setAttribute("content", "width=793px");
+
 			return (
-				<main className="preview">
-					<Preview data={this.state}></Preview>
-					<Button type="preview" prev={this.handlePreview}></Button>
-	
-				</main>
+				<>
+					<div id="editPdfDiv">
+						<Button type="edit" prev={this.handlePreview}></Button>
+						<ReactToPrint
+						trigger={() => {
+							return <a href="#"><Button type="pdf"></Button></a>
+						}}
+						content={() => this.myRef}
+					/>
+						
+					</div>
+					
+
+					<Preview ref={el => (this.myRef = el)}  data={this.state}></Preview>
+					
+				</>
 			);
-
-
-
 		} else {
-			document.querySelector('meta[name="viewport"]').setAttribute("content", "width=device-width, initial-scale=1");
+			document
+				.querySelector('meta[name="viewport"]')
+				.setAttribute("content", "width=device-width, initial-scale=1");
 			return (
 				<main className="form">
 					<p>Personal Information</p>
