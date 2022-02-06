@@ -28,6 +28,23 @@ button {
     margin-top: 15px;
 }
 
+.editButton {
+    background-color:dodgerblue;
+}
+
+.pdfButton {
+    background-color: palevioletred;
+    font-size: 0.8em;
+}
+
+.pdfButton:hover {
+    background-color: #A53D60;
+}
+
+.editButton:hover {
+    background-color: #005DCC;
+}
+
 
 .delButton:hover {
     background-color: #CC0000;
