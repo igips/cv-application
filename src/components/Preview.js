@@ -5,7 +5,8 @@ import emptyAvatar from "../img/emptyAvatar.png";
 class Preview extends React.Component {
 	render() {
 		return (
-			<>
+			<main className="preview">
+            
 				<div className="prevHeader">
 					<h1 id="nameH1">{this.props.data.personalInfo.fullName}</h1>
 					<h3 id="titleH3">{this.props.data.personalInfo.title}</h3>
@@ -80,7 +81,7 @@ class Preview extends React.Component {
 						</div>
 					</div>
 				</div>
-			</>
+			</main>
 		);
 	}
 }
