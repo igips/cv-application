@@ -25,6 +25,12 @@ class Button extends React.Component {
 			button = <button onClick={this.props.prev}  className="previewButton">Preview</button>;
 		} else if (this.props.type === "reset") {
 			button = <button onClick={this.props.res} className="resetButton">Reset</button>;
+
+		} else if (this.props.type === "edit") {
+			button = <button onClick={this.props.prev}  className="editButton">Edit</button>;
+
+		} else if (this.props.type === "pdf") {
+			button = <button   className="pdfButton">Save PDF</button>;
 		}
 
 		return button;
