@@ -1,14 +1,13 @@
 .preview {
     background-color: #f3f3f3;
 	width: 210mm;
-    min-height: 297mm;
+    min-height: 296mm;
 	box-shadow: 1px 1px #c0c0c0, -2.5px 0 0.3em #8d8d8d;
 	font-family: "Bebas Neue", cursive;
 	font-family: "Lato", sans-serif;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	margin-bottom: 10px;
 }
 
 .prevHeader {
