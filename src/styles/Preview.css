@@ -15,6 +15,7 @@
     padding: 20px;
     background-color: coral;
     color: white;
+    height: 108px;
     
 }
 
@@ -25,18 +26,17 @@
 }
 
 .mainLeft {
-   flex: 1.1; 
    background-color: #FFE6D7;
    padding: 10px;
    padding-top: 20px;
-   max-width: 230px;
+   width: 230px;
    display: flex;
    flex-direction: column; 
    
 }
 
 .mainRight {
-    flex: 3;
+    width: 563px;
     background-color: #FFF7F3;
     padding: 20px;
     display: flex;
@@ -73,6 +73,7 @@ article {
 .exEdRowRight {
     word-break: break-all;
 }
+
 
 img {
     max-width: 200px;
