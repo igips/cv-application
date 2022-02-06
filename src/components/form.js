@@ -8,14 +8,14 @@ import Education from "./Education";
 import Preview from "./Preview";
 import PrevRes from "./PrevRes";
 import emptyAvatar from "../img/emptyAvatar.png";
+import Button from "./Button";
 
 class Form extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			preview: true,
-			ExperienceForm: [],
+			preview: false,
 			EducationForm: [],
 			personalInfo: {
 				fullName: "",
@@ -38,15 +38,11 @@ class Form extends React.Component {
 		this.handleChangeEducation = this.handleChangeEducation.bind(this);
 		this.handleDeleteEducation = this.handleDeleteEducation.bind(this);
 		this.handleReset = this.handleReset.bind(this);
-		this.addStateFormExperience = this.addStateFormExperience.bind(this);
-		this.deleteFormExpereience = this.deleteFormExpereience.bind(this);
-		this.addStateFormEducation = this.addStateFormEducation.bind(this);
-		this.deleteFormEducation = this.deleteFormEducation.bind(this);
+		this.handlePreview = this.handlePreview.bind(this);
 	}
 
 	handleReset() {
 		this.setState({
-			ExperienceForm: [],
 			EducationForm: [],
 			personalInfo: {
 				fullName: "",
@@ -60,6 +56,21 @@ class Form extends React.Component {
 			experience: [],
 			education: [],
 		});
+	}
+
+	handlePreview() {
+		if(this.state.preview) {
+			this.setState({
+				...this.state,
+				preview: false,
+			});
+
+		} else {
+			this.setState({
+				...this.state,
+				preview: true,
+			});
+		}
 	}
 
 	handleChange(e) {
@@ -141,6 +152,8 @@ class Form extends React.Component {
 		});
 	}
 
+	
+
 	handleChangeEducation(e, key) {
 		this.setState((state) => {
 			const newEdu = state.education.map((item) => {
@@ -169,54 +182,16 @@ class Form extends React.Component {
 		});
 	}
 
-	addStateFormExperience(state, key) {
-		this.setState(
-			{
-				...this.state,
-				ExperienceForm: [...this.state.ExperienceForm, state],
-			},
-			() => this.handleAddExperience(key)
-		);
-	}
 
-	deleteFormExpereience(key) {
-		this.setState(
-			(state) => {
-				const forms = state.ExperienceForm.filter((fragment) => fragment.key !== key);
-
-				return { ...state, ExperienceForm: [...forms] };
-			},
-			() => this.handleDeleteExperience(key)
-		);
-	}
-
-	addStateFormEducation(state, key) {
-		this.setState(
-			{
-				...this.state,
-				EducationForm: [...this.state.EducationForm, state],
-			},
-			() => this.handleAddEducation(key)
-		);
-	}
-
-	deleteFormEducation(key) {
-		this.setState(
-			(state) => {
-				const forms = state.EducationForm.filter((fragment) => fragment.key !== key);
-				return { ...state, EducationForm: [...forms] };
-			},
-			() => this.handleDeleteEducation(key)
-		);
-	}
 
 	render() {
+		
 		if (this.state.preview) {
 			document.querySelector('meta[name="viewport"]').setAttribute("content", "width=793px");
-
 			return (
 				<main className="preview">
-					<Preview></Preview>
+					<Preview data={this.state}></Preview>
+					<Button type="preview" prev={this.handlePreview}></Button>
 	
 				</main>
 			);
@@ -234,23 +209,21 @@ class Form extends React.Component {
 					<p className="notFirstPara">Experience</p>
 
 					<Experience
-						forms={this.state.ExperienceForm}
-						addState={this.addStateFormExperience}
+						addState={this.handleAddExperience}
 						change={this.handleChangeExperience}
 						val={this.state.experience}
-						del={this.deleteFormExpereience}
+						del={this.handleDeleteExperience}
 					></Experience>
 
 					<p className="notFirstPara">Education</p>
 
 					<Education
-						forms={this.state.EducationForm}
-						addState={this.addStateFormEducation}
+						addState={this.handleAddEducation}
 						val={this.state.education}
 						change={this.handleChangeEducation}
-						del={this.deleteFormEducation}
+						del={this.handleDeleteEducation}
 					></Education>
-					<PrevRes res={this.handleReset}></PrevRes>
+					<PrevRes prev={this.handlePreview} res={this.handleReset}></PrevRes>
 				</main>
 			);
 		}
