@@ -62,7 +62,7 @@ article {
 
 .exEdRow {
     display: flex;
-    
+    color: black;
 }
 
 .exEdRowLeft {
@@ -82,15 +82,22 @@ img {
     
 }
 
-span {
+#mainLeftInnerDiv span {
     color: black;
     font-weight: lighter;
     font-size: 0.7em;
 }
 
-.exEdDiv span {
+.comCity {
     font-size: 0.8em;
+    margin-top: 3px;
 }
+
+.descDiv {
+    font-size: 0.6em;
+    margin-top: 3px;
+}
+
 
 #mainLeftInnerDiv {
     display: flex;

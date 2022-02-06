@@ -35,54 +35,48 @@ class Preview extends React.Component {
 						<p>About Me</p>
 						<article>{this.props.data.personalInfo.about}</article>
 						<p>Experience</p>
-						{this.props.data.experience.map((item) => {
-							return (
-								<React.Fragment key={item.id}>
-									<div className="exEdRow">
-										<div className="exEdRowLeft">
-											{item.from} - {item.to}
+						<div className="exEdDiv">
+							{this.props.data.experience.map((item) => {
+								return (
+									<React.Fragment key={item.id}>
+										<div className="exEdRow">
+											<div className="exEdRowLeft">
+												{item.from} - {item.to}
+											</div>
+											<div className="exEdRowRight">
+												{item.position} <br />
+												<div className="comCity">
+													{item.company}, {item.city}
+												</div>
+												<div className="descDiv">{item.description}</div>
+											</div>
 										</div>
-										<div className="exEdRowRight">
-											{item.position} <br />
-											<span>
-												{item.company}, &nbsp; {item.city}
-											</span>
-											<span>{item.description}</span>
-										</div>
-									</div>
-								</React.Fragment>
-							);
-						})}
-						<div className="exEdDiv"></div>
+									</React.Fragment>
+								);
+							})}
+						</div>
+
 						<p>Education</p>
 						<div className="exEdDiv">
-							<div className="exEdRow">
-								<div className="exEdRowLeft">2008 - 2010</div>
-								<div className="exEdRowRight">
-									University of Michigan <br />
-									<span>Field of study: &nbsp; History Of Art</span>
-									<br />
-									<span>Degree: &nbsp; Master</span>
-								</div>
-							</div>
-							<div className="exEdRow">
-								<div className="exEdRowLeft">2005 - 2008</div>
-								<div className="exEdRowRight">
-									University of Life <br />
-									<span>Field of study: &nbsp; Smoking Weed</span>
-									<br />
-									<span>Degree: &nbsp; Master</span>
-								</div>
-							</div>
-							<div className="exEdRow">
-								<div className="exEdRowLeft">2003 - 2005</div>
-								<div className="exEdRowRight">
-									University of Street <br />
-									<span>Field of study: &nbsp; Hustling</span>
-									<br />
-									<span>Degree: &nbsp; Bachelor</span>
-								</div>
-							</div>
+							{this.props.data.education.map((item) => {
+								return (
+									<React.Fragment key={item.id}>
+										<div className="exEdRow">
+											<div className="exEdRowLeft">
+												{item.from} - {item.to}
+											</div>
+											<div className="exEdRowRight">
+												{item.school}, {item.city}<br />
+												<div className="comCity">
+												Field of study:	{item.study} <br />
+                                                Degree: {item.degree} 
+												</div>
+												
+											</div>
+										</div>
+									</React.Fragment>
+								);
+							})}
 						</div>
 					</div>
 				</div>

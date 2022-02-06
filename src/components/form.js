@@ -16,7 +16,6 @@ class Form extends React.Component {
 
 		this.state = {
 			preview: false,
-			EducationForm: [],
 			personalInfo: {
 				fullName: "",
 				title: "",
