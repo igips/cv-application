@@ -35,6 +35,18 @@ button {
 .pdfButton {
     background-color: palevioletred;
     font-size: 0.8em;
+    width: 70px;
+    border: none;
+    height: 30px;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .pdfButton:hover {

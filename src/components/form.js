@@ -189,7 +189,7 @@ class Form extends React.Component {
 						<Button type="edit" prev={this.handlePreview}></Button>
 						<ReactToPrint
 						trigger={() => {
-							return <a href="#"><Button type="pdf"></Button></a>
+							return <a className="pdfButton" href="#">Save PDF</a>
 						}}
 						content={() => this.myRef}
 					/>
