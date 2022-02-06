@@ -20,6 +20,12 @@ p {
 	border-bottom: 1px solid black;
 }
 
+#editPdfDiv {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
 .formLine {
     display: flex;
     flex-wrap: wrap;
