@@ -1,10 +1,10 @@
 import React from "react";
 import "../styles/Preview.css";
 
-function Preview (props) {
+const Preview = React.forwardRef((props, ref) => {
 	
 		return (
-			<main className="preview">
+			<main ref={ref} className="preview">
             
 				<div className="prevHeader">
 					<h1 id="nameH1">{props.data.personalInfo.fullName}</h1>
@@ -83,6 +83,6 @@ function Preview (props) {
 			</main>
 		);
 	
-}
+});
 
 export default Preview;

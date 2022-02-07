@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React from "react";
+import React, { useState, useRef } from "react";
 import "../styles/Form.css";
 import "../styles/Preview.css";
 import PersonalInfo from "./PersonalInfo";
@@ -9,40 +9,28 @@ import Preview from "./Preview";
 import PrevRes from "./PrevRes";
 import emptyAvatar from "../img/emptyAvatar.png";
 import Button from "./Button";
-import ReactToPrint from 'react-to-print';
+import ReactToPrint from "react-to-print";
 
-class Form extends React.Component {
-	constructor(props) {
-		super(props);
+function Form() {
+	const [state, setState] = useState({
+		preview: false,
+		personalInfo: {
+			fullName: "",
+			title: "",
+			photo: emptyAvatar,
+			address: "",
+			number: "",
+			email: "",
+			about: "",
+		},
+		experience: [],
+		education: [],
+	});
 
-		this.state = {
-			preview: false,
-			personalInfo: {
-				fullName: "",
-				title: "",
-				photo: emptyAvatar,
-				address: "",
-				number: "",
-				email: "",
-				about: "",
-			},
-			experience: [],
-			education: [],
-		};
-		this.myRef = React.createRef();
-		this.handleChange = this.handleChange.bind(this);
-		this.handleAddExperience = this.handleAddExperience.bind(this);
-		this.handleChangeExperience = this.handleChangeExperience.bind(this);
-		this.handleDeleteExperience = this.handleDeleteExperience.bind(this);
-		this.handleAddEducation = this.handleAddEducation.bind(this);
-		this.handleChangeEducation = this.handleChangeEducation.bind(this);
-		this.handleDeleteEducation = this.handleDeleteEducation.bind(this);
-		this.handleReset = this.handleReset.bind(this);
-		this.handlePreview = this.handlePreview.bind(this);
-	}
+	const previewRef = useRef();
 
-	handleReset() {
-		this.setState({
+	function handleReset() {
+		setState({
 			EducationForm: [],
 			personalInfo: {
 				fullName: "",
@@ -58,44 +46,44 @@ class Form extends React.Component {
 		});
 	}
 
-	handlePreview() {
-		if (this.state.preview) {
-			this.setState({
-				...this.state,
+	function handlePreview() {
+		if (state.preview) {
+			setState({
+				...state,
 				preview: false,
 			});
 		} else {
-			this.setState({
-				...this.state,
+			setState({
+				...state,
 				preview: true,
 			});
 		}
 	}
 
-	handleChange(e) {
+	function handleChange(e) {
 		if (e.target.type === "file") {
-			this.handleImage(e);
+			handleImage(e);
 			return;
 		}
 
-		this.setState({
-			...this.state,
+		setState({
+			...state,
 			personalInfo: {
-				...this.state.personalInfo,
+				...state.personalInfo,
 				[e.target.name]: e.target.value,
 			},
 		});
 	}
 
-	handleImage(e) {
+	function handleImage(e) {
 		const img = e.target.files[0];
 		const reader = new FileReader();
 
 		reader.onload = () => {
-			this.setState({
-				...this.state,
+			setState({
+				...state,
 				personalInfo: {
-					...this.state.personalInfo,
+					...state.personalInfo,
 					[e.target.name]: reader.result,
 				},
 			});
@@ -103,11 +91,11 @@ class Form extends React.Component {
 		reader.readAsDataURL(img);
 	}
 
-	handleAddExperience(key) {
-		this.setState({
-			...this.state,
+	function handleAddExperience(key) {
+		setState({
+			...state,
 			experience: [
-				...this.state.experience,
+				...state.experience,
 				{
 					id: key,
 					position: "",
@@ -121,11 +109,11 @@ class Form extends React.Component {
 		});
 	}
 
-	handleAddEducation(key) {
-		this.setState({
-			...this.state,
+	function handleAddEducation(key) {
+		setState({
+			...state,
 			education: [
-				...this.state.education,
+				...state.education,
 				{
 					id: key,
 					school: "",
@@ -139,99 +127,90 @@ class Form extends React.Component {
 		});
 	}
 
-	handleChangeExperience(e, key) {
-		this.setState((state) => {
-			const newExp = state.experience.map((item) => {
+	function handleChangeExperience(e, key) {
+		setState((prevState) => {
+			const newExp = prevState.experience.map((item) => {
 				if (item.id === key) {
 					return { ...item, [e.target.name]: e.target.value };
 				}
 				return item;
 			});
-			return { ...state, experience: [...newExp] };
+			return { ...prevState, experience: [...newExp] };
 		});
 	}
 
-	handleChangeEducation(e, key) {
-		this.setState((state) => {
-			const newEdu = state.education.map((item) => {
+	function handleChangeEducation(e, key) {
+		setState((prevState) => {
+			const newEdu = prevState.education.map((item) => {
 				if (item.id === key) {
 					return { ...item, [e.target.name]: e.target.value };
 				}
 				return item;
 			});
-			return { ...state, education: [...newEdu] };
+			return { ...prevState, education: [...newEdu] };
 		});
 	}
 
-	handleDeleteExperience(key) {
-		this.setState((state) => {
-			const newExp = state.experience.filter((item) => item.id !== key);
+	function handleDeleteExperience(key) {
+		setState((prevState) => {
+			const newExp = prevState.experience.filter((item) => item.id !== key);
 
-			return { ...state, experience: [...newExp] };
+			return { ...prevState, experience: [...newExp] };
 		});
 	}
 
-	handleDeleteEducation(key) {
-		this.setState((state) => {
-			const newEdu = state.education.filter((item) => item.id !== key);
+	function handleDeleteEducation(key) {
+		setState((prevState) => {
+			const newEdu = prevState.education.filter((item) => item.id !== key);
 
-			return { ...state, education: [...newEdu] };
+			return { ...prevState, education: [...newEdu] };
 		});
 	}
 
-	render() {
-		if (this.state.preview) {
-			document.querySelector('meta[name="viewport"]').setAttribute("content", "width=793px");
+	if (state.preview) {
+		document.querySelector('meta[name="viewport"]').setAttribute("content", "width=793px");
 
-			return (
-				<>
-					<div id="editPdfDiv">
-						<Button type="edit" prev={this.handlePreview}></Button>
-						<ReactToPrint
-						trigger={() => {
-							return <a className="pdfButton" href="#">Save PDF</a>
-						}}
-						content={() => this.myRef}
+		return (
+			<>
+				<div id="editPdfDiv">
+					<Button type="edit" prev={handlePreview}></Button>
+					<ReactToPrint
+						trigger={() => <button className="pdfButton">Save PDF</button>}
+						content={() => previewRef.current}
 					/>
-						
-					</div>
-					
+				</div>
 
-					<Preview ref={el => (this.myRef = el)}  data={this.state}></Preview>
-					
-				</>
-			);
-		} else {
-			document
-				.querySelector('meta[name="viewport"]')
-				.setAttribute("content", "width=device-width, initial-scale=1");
-			return (
-				<main className="form">
-					<p>Personal Information</p>
+				<Preview ref={previewRef} data={state}></Preview>
+			</>
+		);
+	} else {
+		document.querySelector('meta[name="viewport"]').setAttribute("content", "width=device-width, initial-scale=1");
+		return (
+			<main className="form">
+				<p>Personal Information</p>
 
-					<PersonalInfo change={this.handleChange} val={this.state.personalInfo}></PersonalInfo>
+				<PersonalInfo change={handleChange} val={state.personalInfo}></PersonalInfo>
 
-					<p className="notFirstPara">Experience</p>
+				<p className="notFirstPara">Experience</p>
 
-					<Experience
-						addState={this.handleAddExperience}
-						change={this.handleChangeExperience}
-						val={this.state.experience}
-						del={this.handleDeleteExperience}
-					></Experience>
+				<Experience
+					addState={handleAddExperience}
+					change={handleChangeExperience}
+					val={state.experience}
+					del={handleDeleteExperience}
+				></Experience>
 
-					<p className="notFirstPara">Education</p>
+				<p className="notFirstPara">Education</p>
 
-					<Education
-						addState={this.handleAddEducation}
-						val={this.state.education}
-						change={this.handleChangeEducation}
-						del={this.handleDeleteEducation}
-					></Education>
-					<PrevRes prev={this.handlePreview} res={this.handleReset}></PrevRes>
-				</main>
-			);
-		}
+				<Education
+					addState={handleAddEducation}
+					val={state.education}
+					change={handleChangeEducation}
+					del={handleDeleteEducation}
+				></Education>
+				<PrevRes prev={handlePreview} res={handleReset}></PrevRes>
+			</main>
+		);
 	}
 }
 
