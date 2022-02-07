@@ -1,62 +1,64 @@
 import React from "react";
 import "../styles/Input.css";
 
-class Input extends React.Component {
-	
+const Input = (props) => {
+	let input;
 
-	render() {
-		let input;
-
-		if (this.props.input === undefined) {
+		if (props.input === undefined) {
 			input = (
 				<input
-					name={this.props.name}
-					value={this.props.val}
-					onChange={(e) => this.props.change(e, this.props.id)}
+					name={props.name}
+					value={props.val}
+					onChange={(e) => props.change(e, props.id)}
 					type="text"
-					placeholder={this.props.for}
+					placeholder={props.for}
 				/>
 			);
-		} else if (this.props.input === "file") {
+		} else if (props.input === "file") {
 			input = (
 				<label>
 					<span>Photo</span>
-					<input name={this.props.name} onChange={this.props.change} id="img" type="file" accept="image/*" />
+					<input name={props.name} onChange={props.change} id="img" type="file" accept="image/*" />
 				</label>
 			);
-		} else if (this.props.input === "num") {
+		} else if (props.input === "num") {
 			input = (
 				<input
-					name={this.props.name}
-					value={this.props.val}
-					onChange={this.props.change}
+					name={props.name}
+					value={props.val}
+					onChange={props.change}
 					type="number"
-					placeholder={this.props.for}
+					placeholder={props.for}
 				/>
 			);
-		} else if (this.props.input === "email") {
+		} else if (props.input === "email") {
 			input = (
 				<input
-					name={this.props.name}
-					value={this.props.val}
-					onChange={this.props.change}
+					name={props.name}
+					value={props.val}
+					onChange={props.change}
 					type="email"
-					placeholder={this.props.for}
+					placeholder={props.for}
 				/>
 			);
-		} else if (this.props.input === "textarea") {
+		} else if (props.input === "textarea") {
 			input = (
 				<textarea
-					name={this.props.name}
-					value={this.props.val}
-					onChange={this.props.change}
-					placeholder={this.props.for}
+					name={props.name}
+					value={props.val}
+					onChange={props.change}
+					placeholder={props.for}
 				></textarea>
 			);
 		}
+	
 
-		return input;
-	}
-}
+	return(
+		input
+	); 
+		
+
+	
+};
 
 export default Input;
