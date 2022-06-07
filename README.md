@@ -1,6 +1,6 @@
 # CV Builder
 
-A React app which allows users to create their own resume and download it in a PDF format.
+A React app which allows users to create their own resume and download it in a PDF format. 
 
 [Live Demo](https://igips.github.io/cv-application/) :point_left:
 
